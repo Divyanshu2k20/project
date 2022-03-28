@@ -37,10 +37,11 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['divyanshu-arzoo-college-major.azurewebsites.net']
 
 
 # Application definition
+CSRF_TRUSTED_ORIGINS = ['https://divyanshu-arzoo-college-major.azurewebsites.net']
 
 INSTALLED_APPS = [
     'demoapp.apps.DemoappConfig',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -142,6 +144,9 @@ STATIC_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     # '/var/www/static/'
 ]
+
+STATICFILES_STORAGE='whitenoise.middleware.WhiteNoiseMiddleware',
+STATIC_ROOT=BASE_DIR / 'staticfiles'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
